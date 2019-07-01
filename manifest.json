@@ -1,19 +1,19 @@
 {
   "manifest_version": 2,
   "name": "DeepLink Generator",
-  "version": "1.0",
-
+  "version": "1.2",
   "description": "Displays a deep link",
-
   "icons": {
     "48": "icons/logo-48.png"
   },
-
   "content_scripts": [
     {
-      "matches": ["*://*.dailyobjects.com/*"],
-      "js": ["deeplink.js"] 
+      "matches": [
+        "*://*.dailyobjects.com/*"
+      ],
+      "js": [
+        "main.js"
+      ]
     }
   ]
 }
- 
