@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "DeepLink Generator",
+  "version": "1.1",
+
+  "description": "Displays a deep link",
+
+  "icons": {
+    "48": "icons/logo-48.png"
+  },
+
+  "applications": {
+    "gecko": {
+      "id": "saubhagya01@dailyobjects.com"
+    }
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.dailyobjects.com/*"],
+      "js": ["deeplink.js"] 
+    }
+  ]
+}
+ 
