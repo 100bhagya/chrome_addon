@@ -21,6 +21,8 @@ function generate_deeplink() {
                 deepLink += "productDetails?productSlug=" + url_segments[1];
             else if (document.getElementsByClassName("products-wrapper").length >= 1)
                 deepLink += "listing?categorySlug=" + url_segments[1] + "&brandSlug=" + url_segments[2] + "&modelSlug=" + url_segments[3];
+            else 
+                deepLink = "NULL";
             break;
     }
 
@@ -29,7 +31,12 @@ function generate_deeplink() {
     const deeplink_text_node = document.createTextNode(deepLink);
     header_row_div.style.color = "white";
     node.appendChild(deeplink_text_node);
-    header_row_div.append(node);
+    const child_count = header_row_div.childElementCount;
+    if (child_count >= 3)
+        header_row_div.lastChild.replaceWith(node);
+    else
+        header_row_div.append(node);
+    
 }
 
 chrome.runtime.onMessage.addListener(
@@ -38,4 +45,3 @@ chrome.runtime.onMessage.addListener(
                     generate_deeplink();
             }
     });
-    
