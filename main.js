@@ -35,6 +35,6 @@ function generate_deeplink() {
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {        
             if (request.message === 'hello!') {
-                    myFun();
+                    generate_deeplink();
             }
     });
