@@ -2,10 +2,20 @@
   "manifest_version": 2,
   "name": "DeepLink Generator",
   "version": "1.2",
+  "background": {
+  "scripts":["background.js"]
+  },
+
   "description": "Displays a deep link",
+
+  "permissions": [
+    "tabs"
+  ],
+
   "icons": {
     "48": "icons/logo-48.png"
   },
+
   "content_scripts": [
     {
       "matches": [

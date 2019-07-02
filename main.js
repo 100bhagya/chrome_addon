@@ -27,15 +27,14 @@ function generate_deeplink() {
     const header_row_div = document.getElementsByClassName("header-row")[0];
     const node = document.createElement("p");
     const deeplink_text_node = document.createTextNode(deepLink);
+    header_row_div.style.color = "white";
     node.appendChild(deeplink_text_node);
-
-    const child_count = header_row_div.childElementCount;
-    if (child_count >= 3)
-        header_row_div.lastChild.replaceWith(node);
-    else
-        header_row_div.append(node);
+    header_row_div.append(node);
 }
 
-document.addEventListener("click", function () {
-    generate_deeplink()
-});
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {        
+            if (request.message === 'hello!') {
+                    myFun();
+            }
+    });
