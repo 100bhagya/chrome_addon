@@ -8,6 +8,8 @@ async function generate_deeplink() {
     const url = window.location.pathname;
     const url_segments = url.split('/');
     const first_segment = url_segments[1];
+    const third_segment = url_segments[3];
+    const title = "DailyObjects";
 
     switch (first_segment) {
         case "":
@@ -24,17 +26,23 @@ async function generate_deeplink() {
             break;
         case "wallets":
             deepLink += "genericPage?title=DailyObjects&forwardingQuery=?categorySlug=bags-and-sleeves%26deviceSlug=wallet";
-            break;
+            break;        
         default:        
-            await sleep(2000);                      
+            await sleep(2000);                                  
             if (document.getElementsByClassName("pdp-container").length >= 1)
                 deepLink += "productDetails?productSlug=" + url_segments[1];
             else if (document.getElementsByClassName("products-wrapper").length >= 1)
                 deepLink += "listing?categorySlug=" + url_segments[1] + "&brandSlug=" + url_segments[2] + "&modelSlug=" + url_segments[3];            
             else if (document.getElementsByClassName("case-collection-intermediate-page").length >= 1)
-                deepLink += "genericPage?title=" + "DailyObjects" + "&forwardingQuery=?categorySlug=designer-cases%26brandSlug=" + url_segments[2] + "%26modelSlug=" + url_segments[3];
+                deepLink += "genericPage?title=" + title + "&forwardingQuery=?categorySlug=" + "designer-cases" + "%26brandSlug=" + url_segments[2] + "%26modelSlug=" + url_segments[3];        
+            else if (url_segments[3]=="eyewear-case")
+                deepLink += "genericPage?title=" + title + "&forwardingQuery=?categorySlug=travel%26deviceSlug=eyewear";
+            else if (url_segments[3]=="notebooks")
+                deepLink += "genericPage?title=" + title + "&forwardingQuery=?categorySlug=stationery%26deviceSlug=notebook";
+            else if (url_segments[3]=="airpods-case-cover")
+                deepLink += "genericPage?title=" + title + "&forwardingQuery=?categorySlug=" + "mobile-accessories" + "%26modelSlug=" + url_segments[3];
             else if (document.getElementsByClassName("intermediate-page-container").length >= 1 )          
-                deepLink += "genericPage?title=" + "DailyObjects" + "&forwardingQuery=?categorySlug=" + "bags-and-sleeves" + "%26brandSlug=" + url_segments[2] + "%26modelSlug=" + url_segments[3];    
+                deepLink += "genericPage?title=" + title + "&forwardingQuery=?categorySlug=" + "bags-and-sleeves" + "%26brandSlug=" + url_segments[2] + "%26modelSlug=" + url_segments[3];                
             else 
                 deepLink = "NULL";
             break;
