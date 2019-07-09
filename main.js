@@ -18,6 +18,9 @@ async function generate_deeplink() {
         case "cart":
             deepLink += "cart";
             break;
+        case "designer-cases":
+            deepLink += "listing?categorySlug=" + first_segment;
+            break;
         case "search":
             deepLink += "search?q=" + url_segments[2];
             break;
